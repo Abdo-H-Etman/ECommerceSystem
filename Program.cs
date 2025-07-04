@@ -22,6 +22,16 @@ try
     Console.WriteLine("\nCorner case tests:");
     Console.WriteLine("-----------------------");
 
+    var emptyCart = new ShoppingCart();
+    try
+    {
+        checkoutService.Checkout(customer, emptyCart);
+    }
+    catch (InvalidOperationException ex)
+    {
+        Console.WriteLine($"Error: {ex.Message}");
+    }
+
     var poorCustomer = new Customer("Poor Customer", 50);
     try
     {
@@ -40,7 +50,7 @@ try
     {
         Console.WriteLine($"Error: {ex.Message}");
     }
-    
+
     var expiredCheese = new ExpirableShippableProduct("Expired Cheese", 90, 5, DateTime.Now.AddSeconds(3), 300);
     var cartWithExpiredItem = new ShoppingCart();
     Thread.Sleep(5000); // Wait for the cheese to expire
