@@ -47,15 +47,15 @@ public class CheckoutService
 
         customer.DeductBalance(totalAmount);
 
-        Console.WriteLine("** Checkout receipt **");
+        Console.WriteLine("\n** Checkout receipt **");
         foreach (var item in cart.Items)
         {
-            Console.WriteLine($"{item.Value}x {item.Key.Name} {item.Key.Price * item.Value}");
+            Console.WriteLine("{0,-4} {1,-23} {2,-10}",$"{item.Value}x", item.Key.Name, item.Key.Price * item.Value);
         }
         Console.WriteLine("----------------------");
-        Console.WriteLine($"Subtotal {subtotal}");
-        Console.WriteLine($"Shipping {shippingCost}");
-        Console.WriteLine($"Amount {totalAmount}");
+        Console.WriteLine("{0,-20} {1,-10}", "Subtotal", subtotal);
+        Console.WriteLine("{0,-20} {1,-10}", "Shipping cost", shippingCost);
+        Console.WriteLine("{0,-20} {1,-10}", "Total amount", totalAmount);
         Console.WriteLine($"Customer balance after payment: {customer.Balance}");
     }
 }
